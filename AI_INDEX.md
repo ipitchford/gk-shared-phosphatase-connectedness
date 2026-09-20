@@ -1,0 +1,1 @@
+Start with CLAIMS.json and ASSURANCE.md. The complete written proof is paper/connectedness.tex. Exact certificate: research/certificate.json. Run verify.py with pinned requirements. Consult review/RESPONSE.md for actioned supplied findings.

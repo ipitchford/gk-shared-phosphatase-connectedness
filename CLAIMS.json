@@ -1,0 +1,29 @@
+{
+  "version": "0.1.0-candidate",
+  "status": "unrefereed-candidate",
+  "claims": [
+    {
+      "id": "GK-1",
+      "statement": "The full positive 16-dimensional rates-and-totals multistationarity region of the stated two-layer shared-phosphatase network is path connected.",
+      "evidence": "paper/connectedness.tex",
+      "type": "written universal proof using external degree theorem"
+    },
+    {
+      "id": "GK-2",
+      "statement": "The two negative auxiliary component images overlap on a nonempty open subset.",
+      "evidence": [
+        "research/certificate.json",
+        "paper/connectedness.tex"
+      ],
+      "type": "exact witness plus implicit function theorem"
+    }
+  ],
+  "exclusions": [
+    "stability",
+    "fixed-rate or fixed-total slice connectivity",
+    "physiological realism",
+    "higher-layer networks",
+    "historical-first claim",
+    "formal verification"
+  ]
+}

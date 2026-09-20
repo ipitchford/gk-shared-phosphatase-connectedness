@@ -1,0 +1,33 @@
+{
+  "title": "Path connectedness of multistationarity in a two-layer phosphorylation cascade with a shared phosphatase",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "description": "<p>Unrefereed candidate. A written proof of path connectedness of the full positive sixteen-dimensional rates-and-totals multistationarity region for a two-layer phosphorylation cascade with a shared phosphatase. An exact rational overlap certificate and a zero-to-negative ray address Conjecture 4.3 of Kaihnsa and Wang, arXiv:2607.25456v1. Includes exact algebraic checks and internal model editorial reports. No formal verification, authenticated external review, stability result, physiological validation or historical-first claim is made. Original prose/data CC0; code MIT; cited and supplied third-party files not redistributed.</p>",
+  "creators": [
+    {
+      "name": "Anonymous"
+    }
+  ],
+  "version": "0.1.0-candidate",
+  "publication_date": "2026-09-20",
+  "access_right": "open",
+  "license": "cc-zero",
+  "keywords": [
+    "multistationarity",
+    "phosphorylation cascade",
+    "path connectedness",
+    "exact certificate"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/ipitchford/gk-shared-phosphatase-connectedness/releases/tag/v0.1.0-candidate",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.48550/arXiv.2607.25456",
+      "relation": "references",
+      "scheme": "doi"
+    }
+  ]
+}

@@ -1,0 +1,456 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\pos}{\mathbb{R}_{>0}}
+\newcommand{\Om}{\Omega}
+\newcommand{\dd}{\mathrm{d}}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\intt}{int}
+\title{Path connectedness of multistationarity in a two-layer phosphorylation cascade with a shared phosphatase}
+\author{Anonymous}
+\date{20 September 2026}
+\hypersetup{pdftitle={Path connectedness of multistationarity in a two-layer phosphorylation cascade with a shared phosphatase},pdfauthor={Anonymous}}
+\begin{document}
+\maketitle
+\begin{center}\small Unrefereed candidate, version 0.1.0-candidate\\
+\url{https://doi.org/10.5281/zenodo.22858244}
+\end{center}
+\begin{abstract}
+We prove that the multistationarity region of a two-layer Goldbeter--Koshland phosphorylation cascade with a shared phosphatase is path connected in the full sixteen-dimensional space of positive reaction rates and conserved total concentrations. This contradicts Conjecture~4.3 of Kaihnsa and Wang, arXiv:2607.25456v1, while preserving their upper bound of two components. Their auxiliary negative-critical set has two path-connected components. We give an exact rational parameter choice with negative-critical steady states in both components, showing that their physical images overlap. The overlap contains an open set by the implicit function theorem. A degree criterion supplies a nonpositive-critical steady state above every multistationary parameter; an explicit coordinate ray joins every relevant zero-critical point to the negative set. An elementary overlap-graph lemma organizes the resulting global argument and includes degenerate multistationary parameters. The accompanying candidate bundle provides exact witnesses, complete polynomial coefficients, reproducible algebraic checks, and review-response records. No conclusion about stability or connectivity of fixed-parameter slices is asserted.
+\end{abstract}
+\noindent\textbf{Keywords:} mass-action kinetics; phosphorylation cascade; multistationarity; path connectedness; critical determinant; exact certificate.
+
+\section{Introduction and main result}
+A multistationarity region consists of the parameter choices for which a reaction network admits at least two distinct positive equilibria in the same stoichiometric compatibility class. Its topology describes whether such parameter choices can be joined continuously while retaining multistationarity. Here both reaction rate constants and conserved total concentrations may vary along the path.
+
+Kaihnsa and Wang~\cite{KW} study cascades of Goldbeter--Koshland loops. For the two-layer cascade with a shared phosphatase, they prove that the full multistationarity region has at most two connected components and conjecture that it is disconnected. The negative set of their critical polynomial in auxiliary coordinates has exactly two components. This does not decide the physical topology, because the map from auxiliary coordinates to physical parameters need not preserve their separation.
+
+Earlier work of Feliu and Wiuf~\cite{FW} studies the same shared-phosphatase cascade as motif~(k), establishing multistationarity through steady-state elimination. Multistationarity of the architecture and scalar elimination are therefore prior results. The contribution here concerns the topology of the region in the full space of rates and conserved totals.
+
+We resolve this question by constructing a physical parameter fibre that meets both negative components. The proof uses the degree criterion of Conradi, Feliu, Mincheva and Wiuf~\cite{CFMW}, in the connectivity framework of Telek and Feliu~\cite{TF}, but does not require the negative auxiliary set itself to be connected.
+
+\begin{theorem}\label{thm:main}
+For the mass-action network \eqref{eq:network}, let $\Om\subset\pos^{12}\times\pos^4$ be the set of reaction rates and conserved totals admitting at least two distinct positive steady states. Then $\Om$ is nonempty and path connected. In particular, it has exactly one connected component.
+\end{theorem}
+
+The theorem includes parameter choices with degenerate steady states. It contradicts Conjecture~4.3 of \cite[version~1]{KW}; Theorem~4.2 of that paper, which gives an upper bound of two, remains valid. We also show that the images of the two negative components overlap on an open subset of the physical parameter space.
+
+The exact witness is given in Section~\ref{sec:witness}. The general topological argument appears in Section~\ref{sec:graph}, and the treatment of degenerate parameters in Section~\ref{sec:global}. The proof is self-contained apart from the stated degree criterion. Its determinant identities can be checked directly from the displayed matrices and are reproduced by the accompanying exact programs.
+
+\section{The network, conservation laws, and degree criterion}\label{sec:network}
+For $i=1,2$, consider
+\begin{equation}\label{eq:network}
+\begin{aligned}
+Y_i+X_{i-1}&\underset{\kappa_{6i-4}}{\stackrel{\kappa_{6i-5}}{\rightleftarrows}}V_i
+ \xrightarrow{\kappa_{6i-3}}X_i+X_{i-1},\\
+X_i+H_1&\underset{\kappa_{6i-1}}{\stackrel{\kappa_{6i-2}}{\rightleftarrows}}U_i
+ \xrightarrow{\kappa_{6i}}Y_i+H_1 .
+\end{aligned}
+\end{equation}
+This is network~(34) of~\cite{KW}. The species order, used throughout, is
+\[
+ z=(h,x_0,x_1,x_2,y_1,y_2,u_1,u_2,v_1,v_2).
+\]
+All twelve rate constants are strictly positive. The four conserved totals are
+\begin{equation}\label{eq:totals}
+\begin{aligned}
+H&=h+u_1+u_2,& E&=x_0+v_1,\\
+S&=x_1+y_1+u_1+v_1+v_2,& T&=x_2+y_2+u_2+v_2.
+\end{aligned}
+\end{equation}
+Write $Wz=(H,E,S,T)$ for this linear conservation map. The four rows of $W$ are in reduced row-echelon form, with pivots in the first four species. The stoichiometric matrix $N$ has rank six. For example, the six columns corresponding to reactions $1,3,4,7,9,10$ are linearly independent: the $Y_1,U_1,X_0,Y_2,U_2,X_2$ rows successively force their coefficients to vanish. Since $WN=0$ and $W$ has rank four, the rank is exactly six.
+
+Let $f_\kappa$ be the ten-dimensional mass-action vector field and define
+\begin{equation}\label{eq:psi}
+\psi_\kappa(z)=\bigl(Wz,(f_\kappa)_{y_1},(f_\kappa)_{y_2},
+(f_\kappa)_{u_1},(f_\kappa)_{u_2},(f_\kappa)_{v_1},(f_\kappa)_{v_2}\bigr).
+\end{equation}
+The omitted four ODEs are determined by conservation. Because the rank is six, the critical determinant in the degree criterion is
+\[
+q_\kappa(z)=(-1)^6\det D\psi_\kappa(z)=\det D\psi_\kappa(z).
+\]
+
+We use two consequences of the degree criterion originally established in~\cite[Theorem~1]{CFMW} and restated in~\cite[Theorem~1]{TF}; they are Theorem~2.1(A),(B) in arXiv:2209.13936v2. For a dissipative network without relevant boundary steady states:
+\begin{enumerate}[label=(\roman*)]
+\item if $q_\kappa(z)>0$ at every positive steady state with totals $d$, then $(\kappa,d)$ is not multistationary;
+\item if $q_\kappa(z)<0$ at some positive steady state with totals $d$, then $(\kappa,d)$ is multistationary.
+\end{enumerate}
+In particular, contraposing (i), every $(\kappa,d)\in\Om$ has a positive steady state with $q_\kappa\leq0$. This is also the content used in \cite[Lemma~9]{TF}, numbered Lemma~6.4 in the cited arXiv version. The non-strict inequality is essential at degenerate parameters.
+
+\begin{lemma}\label{lem:boundary}
+Network~\eqref{eq:network} is conservative and has no boundary steady state in a compatibility class with $H,E,S,T>0$. The degree criterion applies.
+\end{lemma}
+\begin{proof}
+The sum of the four expressions in~\eqref{eq:totals} has a strictly positive coefficient for every species. Thus each nonnegative compatibility class is bounded, and the network is conservative, hence dissipative.
+
+At any nonnegative steady state, the complex equations and catalytic balances give
+\begin{equation}\label{eq:balances}
+\begin{aligned}
+\kappa_{6i-5}x_{i-1}y_i&=(\kappa_{6i-4}+\kappa_{6i-3})v_i,\\
+\kappa_{6i-2}hx_i&=(\kappa_{6i-1}+\kappa_{6i})u_i,\\
+\kappa_{6i-3}v_i&=\kappa_{6i}u_i.
+\end{aligned}
+\end{equation}
+The last equality follows by adding the $Y_i$ and $V_i$ steady-state equations. If $h=0$, then $u_1=u_2=0$, contradicting $H>0$. If $x_0=0$, then $v_1=0$, contradicting $E>0$. If $x_1=0$, the balances imply $u_1=v_1=y_1=v_2=0$, contradicting $S>0$. If $x_2=0$, they imply $u_2=v_2=y_2=0$, contradicting $T>0$. Thus $h,x_0,x_1,x_2$ are positive; \eqref{eq:balances} then makes all remaining species positive.
+\end{proof}
+
+\section{Steady-state coordinates and the critical sign}\label{sec:critical}
+Define the positive effective constants, as in~\cite[Eq.~(4)]{KW}, by
+\begin{equation}\label{eq:effective}
+\begin{aligned}
+a_i&=\frac{\kappa_{6i}\kappa_{6i-2}(\kappa_{6i-4}+\kappa_{6i-3})}
+ {\kappa_{6i-3}\kappa_{6i-5}(\kappa_{6i-1}+\kappa_{6i})},\\
+b_i&=\frac{\kappa_{6i-2}}{\kappa_{6i-1}+\kappa_{6i}},&
+c_i&=\frac{\kappa_{6i}\kappa_{6i-2}}{\kappa_{6i-3}(\kappa_{6i-1}+\kappa_{6i})}.
+\end{aligned}
+\end{equation}
+The positive steady states are parametrized by $w=(h,x_0,x_1,x_2)\in\pos^4$ through
+\begin{equation}\label{eq:steady}
+y_i=a_i\frac{hx_i}{x_{i-1}},\qquad u_i=b_ihx_i,\qquad v_i=c_ihx_i.
+\end{equation}
+Substitution in the balances proves both existence and completeness of this parametrization. Let $\varphi_\kappa(w)$ denote the full state. Its conservation map is
+\begin{equation}\label{eq:F}
+F_\kappa(w)=W\varphi_\kappa(w)=
+\begin{pmatrix}
+h+b_1hx_1+b_2hx_2\\
+x_0+c_1hx_1\\
+x_1+a_1hx_1/x_0+(b_1+c_1)hx_1+c_2hx_2\\
+x_2+a_2hx_2/x_1+(b_2+c_2)hx_2
+\end{pmatrix}.
+\end{equation}
+
+\begin{lemma}\label{lem:sign}
+At every positive steady state,
+\[
+\sgn q_\kappa(\varphi_\kappa(w))=\sgn\det DF_\kappa(w).
+\]
+\end{lemma}
+\begin{proof}
+Split $D\psi_\kappa$ into blocks $\left(\begin{smallmatrix}A&B\\C&D\end{smallmatrix}\right)$ according to the free and remaining species. If $M$ is the derivative of the six remaining steady-state coordinates, then differentiating their steady-state equations gives $C+DM=0$, while $DF_\kappa=A+BM$. Hence
+\[
+\det D\psi_\kappa=\det DF_\kappa\det D.
+\]
+After simultaneously grouping rows and columns by layer, the $i$th block of $D$ is
+\[
+\begin{pmatrix}
+-\kappa_{6i-5}x_{i-1}&\kappa_{6i}&\kappa_{6i-4}\\
+0&-(\kappa_{6i-1}+\kappa_{6i})&0\\
+\kappa_{6i-5}x_{i-1}&0&-(\kappa_{6i-4}+\kappa_{6i-3})
+\end{pmatrix}.
+\]
+Its determinant is $-\kappa_{6i-5}x_{i-1}\kappa_{6i-3}(\kappa_{6i-1}+\kappa_{6i})$. There are two layers, so $\det D>0$.
+\end{proof}
+
+\subsection{Positive incidence coordinates}
+Put $m_j=1/z_j$. Independently in layer $i$, choose positive reverse-binding fluxes $\rho_i,\sigma_i$ and common catalytic flux $\tau_i$. The six reaction fluxes of that layer are
+\begin{equation}\label{eq:flux}
+(\rho_i+\tau_i,\rho_i,\tau_i,\sigma_i+\tau_i,\sigma_i,\tau_i).
+\end{equation}
+For $\lambda=(\rho_1,\sigma_1,\tau_1,\rho_2,\sigma_2,\tau_2)\in\pos^6$, divide each flux by its positive reactant monomial at $z=1/m$ to obtain $\kappa(m,\lambda)$. These fluxes lie in $\ker N$, so this defines a positive steady-state incidence point. Conversely, every such point has this form by~\eqref{eq:balances}. Thus the parametrization covers all positive rates and their positive steady states. The physical projection is the continuous map
+\begin{equation}\label{eq:projection}
+\Pi(m,\lambda)=\bigl(\kappa(m,\lambda),W(1/m)\bigr)\in\pos^{16}.
+\end{equation}
+Our ordering of the six flux variables is layerwise; it need not agree with the order of extreme-ray columns in~\cite{KW}.
+
+\subsection{The critical polynomial}
+At an incidence point, the effective constants satisfy
+\begin{equation}\label{eq:inveff}
+\begin{aligned}
+a_1&=\frac{m_1m_3}{m_5m_2},& a_2&=\frac{m_1m_4}{m_6m_3},\\
+b_1&=\frac{m_1m_3}{m_7},& b_2&=\frac{m_1m_4}{m_8},&
+c_1&=\frac{m_1m_3}{m_9},& c_2&=\frac{m_1m_4}{m_{10}}.
+\end{aligned}
+\end{equation}
+Differentiate~\eqref{eq:F} with the effective constants held fixed, and only then substitute~\eqref{eq:inveff}. The determinant is
+\begin{equation}\label{eq:g}
+\det DF_\kappa=\frac{g(m)}{m_{10}m_5m_6m_7m_8m_9},\qquad
+ g=A_{13}m_1m_3+A_1m_1+A_3m_3+A_0.
+\end{equation}
+All four coefficients are independent of $m_1,m_3$, and
+\begin{equation}\label{eq:A13}
+A_{13}=(m_6-m_4)\bigl(m_{10}m_2m_7+m_{10}m_5m_7
+ +m_{10}m_5m_9+m_{10}m_7m_9-m_5m_8m_9\bigr).
+\end{equation}
+The coefficients $A_0,A_1,A_3$ have respectively $4,5,17$ monomials, all with positive coefficients. Appendix~\ref{app:coeff} gives them in full. This recovers the polynomial in~\cite[Eq.~(37)]{KW}.
+
+For clarity, the full arbitrary-flux identity with the ordering~\eqref{eq:flux} is
+\begin{equation}\label{eq:fullflux}
+q_{\kappa(m,\lambda)}(1/m)
+=\prod_{i=1}^2\tau_i(\rho_i+\tau_i)(\sigma_i+\tau_i)\,g(m).
+\end{equation}
+Indeed, the factor $\det D$ in Lemma~\ref{lem:sign} becomes the denominator in~\eqref{eq:g} times the product in~\eqref{eq:fullflux}. Every factor is positive. Thus $g$ determines the global critical sign, not just the sign at the particular rates used below.
+
+\section{Two auxiliary components and an overlap criterion}\label{sec:graph}
+\begin{lemma}\label{lem:components}
+The set $\{m\in\pos^{10}:g(m)<0\}$ has exactly two path-connected components, distinguished by the sign of $m_6-m_4$. Every positive zero of $g$ can be joined immediately to $\{g<0\}$ by increasing $m_3$ alone.
+\end{lemma}
+\begin{proof}
+Let
+\[
+R=\frac{m_{10}(m_2m_7+m_5m_7+m_5m_9+m_7m_9)}{m_5m_9}>0.
+\]
+Positivity of $A_0,A_1,A_3$ implies that $g<0$ requires $A_{13}<0$. The latter base consists of
+\begin{align*}
+M_-&=\{m_6<m_4,\ m_8<R\},\\
+M_+&=\{m_6>m_4,\ m_8>R\},
+\end{align*}
+with base variables $m_2,m_4,m_5,m_6,m_7,m_8,m_9,m_{10}$ positive. Each is path connected. For $M_-$ use $m_4=m_6+s$, $m_8=tR$, with $s>0$ and $0<t<1$; for $M_+$ use $m_6=m_4+s$, $m_8=R+s_8$, with $s,s_8>0$. In each case the remaining coordinates vary independently over positive intervals, giving an explicit homeomorphism from a product of intervals.
+
+Over either base, solving $g<0$ gives precisely
+\begin{equation}\label{eq:threshold}
+m_1>\frac{A_3}{-A_{13}},\qquad
+m_3>\frac{A_0+A_1m_1}{-A_{13}m_1-A_3}.
+\end{equation}
+Both successive inequalities can be parametrized by adding an independent positive slack variable to their lower bounds. Their denominators are positive on the preceding domains. They therefore give one path-connected component over each base, denoted $D_-$ and $D_+$. These components are nonempty, and a path between them would cross $m_6=m_4$, where $g>0$.
+
+If $g(m)=0$, the same positivity implies $A_{13}<0$ and
+\begin{equation}\label{eq:ray}
+A_{13}m_1+A_3=-\frac{A_0+A_1m_1}{m_3}<0,\qquad
+ g(m+te_3)=-\frac{t(A_0+A_1m_1)}{m_3}<0\quad(t>0).
+\end{equation}
+Here all coefficients on the right are evaluated at the starting point and are unchanged along the ray. This proves the last assertion.
+\end{proof}
+
+\begin{remark}[The threshold denominator]
+The final display in the proof of \cite[Theorem~4.2]{KW} prints the denominator $-A_3+A_{13}m_1$. Direct solution of the inequality gives $-A_{13}m_1-A_3$, as in~\eqref{eq:threshold}. This sign correction is separate from the connectedness result: the substantive additional step is overlap of the physical images, followed by attachment of degenerate parameters.
+\end{remark}
+
+The following elementary observation organizes that step. It is an overlap-graph formulation of the image-and-attachment argument, not a claim of novelty for the abstract topology.
+
+\begin{lemma}[Overlap graph and attachment]\label{lem:graph}
+Let $\Pi:X\to Y$ be continuous and let $\Om\subseteq Y$. Suppose $C_1,\ldots,C_r\subseteq X$ are nonempty path-connected sets with $\Pi(C_i)\subseteq\Om$. Form a graph on $\{1,\ldots,r\}$, with an edge $ij$ whenever $\Pi(C_i)\cap\Pi(C_j)\ne\varnothing$. Assume this graph is connected and every $p\in\Om$ can be joined within $\Om$ to a point of $\bigcup_i\Pi(C_i)$. Then $\Om$ is path connected.
+\end{lemma}
+\begin{proof}
+Each image is path connected. Following a finite graph path and concatenating paths through successive intersections shows that their union is path connected. For any two points of $\Om$, concatenate their attaching paths with a path in this union.
+\end{proof}
+
+In this application $X=\pos^{10}\times\pos^6$ and $C_\pm=D_\pm\times\pos^6$. A physical path may be concatenated at an overlap point without continuously following one chosen equilibrium lift. The two equilibrium lifts themselves remain in different auxiliary components.
+
+\section{An exact physical overlap}\label{sec:witness}
+Choose
+\begin{equation}\label{eq:constants}
+\begin{aligned}
+a_1&=\frac{20827163033}{10847244000},&
+a_2&=\frac{401271957}{42422500},\\
+b_1&=60,& b_2&=\frac{116}{1025},&
+c_1&=26,& c_2&=\frac{28}{5}.
+\end{aligned}
+\end{equation}
+For each layer these constants are realized by positive rates
+\begin{equation}\label{eq:ratechoice}
+(\kappa_{6i-5},\ldots,\kappa_{6i})
+=\left(\frac{2c_i}{a_i},1,1,2c_i,\frac{c_i}{b_i},\frac{c_i}{b_i}\right).
+\end{equation}
+Substitution into~\eqref{eq:effective} verifies the realization exactly. Take the two free-coordinate points
+\begin{equation}\label{eq:points}
+P=\left(\frac1{150},\frac{5693}{50000},\frac3{10},1340\right),\qquad
+Q=\left(\frac6{25},\frac1{2000},\frac{53}{2000},19\right).
+\end{equation}
+The full positive states are obtained from~\eqref{eq:steady}; all their entries and the twelve rates are listed in Appendix~\ref{app:witness}. At the same rates, both give precisely
+\begin{equation}\label{eq:commontotals}
+(H,E,S,T)=\left(\frac{11661}{10250},\frac{8293}{50000},
+\frac{45678099759}{903937000},\frac{727342892891}{434830625}\right).
+\end{equation}
+Direct differentiation of~\eqref{eq:F} gives
+\begin{equation}\label{eq:detvalues}
+\begin{aligned}
+\det DF_\kappa(P)&=-\frac{50294437400138543733503}{24284564239106250000}<0,\\
+\det DF_\kappa(Q)&=-\frac{895903401800934682060509}{31400206507812500}<0.
+\end{aligned}
+\end{equation}
+Finally,
+\begin{equation}\label{eq:gaps}
+\begin{aligned}
+(x_2-y_2)(P)&=\frac{11224290709}{10605625}>0,\\
+(x_2-y_2)(Q)&=-\frac{3412151689}{2121125}<0.
+\end{aligned}
+\end{equation}
+Since $m_6-m_4=(x_2-y_2)/(x_2y_2)$, the two states lie in opposite negative components: $P$ lifts to $C_+$ and $Q$ to $C_-$. Their physical projections agree exactly.
+
+\begin{proposition}\label{prop:overlap}
+Writing $B_\pm=\Pi(C_\pm)$, one has $B_-\cap B_+\ne\varnothing$. In fact,
+\[
+\intt_{\mathbb{R}^{16}}(B_-\cap B_+)\ne\varnothing.
+\]
+\end{proposition}
+\begin{proof}
+Equations~\eqref{eq:constants}--\eqref{eq:gaps}, Lemma~\ref{lem:sign}, and positivity of the rate realization prove the first assertion. For the second, apply the implicit function theorem to $F_\kappa(w)-d=0$ at each witness, taking all twelve rates and all four totals as parameters. Both $w$-Jacobians are nonsingular by~\eqref{eq:detvalues}. In a sufficiently small common physical neighborhood the two branches remain positive, distinct, negative-critical, and of opposite signs in~\eqref{eq:gaps}. Each nearby parameter therefore lies in both physical images.
+\end{proof}
+
+\section{Global path connectedness}\label{sec:global}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By Lemma~\ref{lem:components}, $C_-$ and $C_+$ are path connected. The degree criterion, Lemma~\ref{lem:boundary}, and~\eqref{eq:fullflux} show that $B_-$ and $B_+$ are subsets of $\Om$. Proposition~\ref{prop:overlap} supplies the edge of their two-vertex overlap graph.
+
+Let $p=(\kappa,d)\in\Om$. The contrapositive of the positive-critical uniqueness criterion supplies a positive steady state above $p$ with $q_\kappa\leq0$. Lift it to $(m,\lambda)$ using~\eqref{eq:flux}. Then $g(m)\leq0$. If $g(m)<0$, the point $p$ already belongs to $B_-\cup B_+$. If $g(m)=0$, consider
+\[
+\gamma(t)=\Pi(m+te_3,\lambda),\qquad 0\leq t\leq1.
+\]
+This is a continuous positive physical-parameter path with $\gamma(0)=p$. Equation~\eqref{eq:ray} and the negative-critical implication of the degree criterion give $\gamma(t)\in B_-\cup B_+\subseteq\Om$ for every $t>0$. Its starting point is in $\Om$ by choice, not merely because its determinant vanishes. Thus the entire path lies in $\Om$.
+
+Every point of $\Om$ attaches to the negative image. Lemma~\ref{lem:graph} now proves path connectedness, and the exact witness proves nonemptiness.
+\end{proof}
+
+The sign calculation controls every value of $t$ on the attaching path. Paths inside either negative component can likewise be obtained by linear interpolation in its positive interval and slack coordinates, then applying the continuous parametrizations. Hence the argument needs no numerical sampling to certify an entire path interval.
+
+\section{Scope and reproducibility}\label{sec:reproduce}
+The theorem concerns multiple distinct positive equilibria, not multiple stable equilibria. It does not imply connectedness of every fixed-rate or fixed-total slice, a result for more than two layers, or physiological plausibility of the witness concentrations. A connecting physical path may vary rates and totals simultaneously.
+
+The candidate bundle includes the complete mathematical argument, machine-readable rational data, and two producer-side algebraic implementations. The reduced-map checker verifies the exact witness and the complete polynomial identity~\eqref{eq:g}. A separately encoded reaction-level checker verifies the ten ODEs, conservation laws, augmented determinants, and the critical polynomial at unit fluxes. Both use SymPy. The supplied review additionally reported an arbitrary-flux identity check using integer sparse polynomials and rational arithmetic; its 135 checks were replayed locally in ordinary and optimized Python. That supplied code is retained privately because redistribution terms were not supplied. This report is supporting evidence, not authenticated external specialist review. The public proof of~\eqref{eq:fullflux} is given by the Schur-complement calculation in Section~\ref{sec:critical} together with Appendix~\ref{app:coeff}. These checks do not constitute proof-assistant certification of the topology or the external degree theorem.
+
+Numerical exploration located a candidate fibre, after which the two relevant states were reconstructed rationally. Neither numerical search nor a claim about the exact number of other equilibria in that fibre is needed for this proof. The manuscript includes all coefficients and witness entries needed to reconstruct its calculations without relying on omitted review files.
+
+\paragraph{Review status and tool disclosure.}
+This is an unrefereed candidate preprint. AI tools assisted the derivation, code generation, checking, and preparation of the text. Internal model-based assessments and a response to the supplied review are documented in the bundle and are not represented as external specialist refereeing. The proof uses an established degree theorem with its hypotheses checked above. No historical-first claim is made; the bounded literature search is recorded separately. The scholarly creator is Anonymous; no affiliation is asserted.
+
+\paragraph{Availability.}
+The accompanying archive contains the LaTeX source, PDF, exact checkers, pinned dependency requirements, review-response records, and a SHA-256 manifest. Its verification script checks the manifest and runs both algebraic implementations in temporary copies, in ordinary and optimized modes, with semantic negative controls. Source references are linked; third-party source snapshots and supplied audit files are not redistributed. No experimental or personal data are used.
+
+\appendix
+\section{Complete critical-polynomial coefficients}\label{app:coeff}
+Besides $A_{13}$ in~\eqref{eq:A13}, the coefficients in~\eqref{eq:g} are
+\begin{align*}
+A_0={}&m_5m_7m_9(m_{10}m_4m_6+m_{10}m_4m_8+m_{10}m_6m_8+m_4m_6m_8),\\
+A_1={}&m_5m_9(m_{10}m_4m_6+m_{10}m_6m_7+m_{10}m_4m_8
++m_{10}m_6m_8+m_4m_6m_8),\\
+A_3={}&m_{10}m_2m_4m_6m_7+m_{10}m_2m_4m_7m_8+m_{10}m_2m_6m_7m_8\\
+&+m_{10}m_4m_5m_6m_7+m_{10}m_4m_5m_6m_9+m_{10}m_4m_5m_7m_8\\
+&+m_{10}m_4m_5m_8m_9+m_{10}m_4m_6m_7m_9+m_{10}m_4m_7m_8m_9\\
+&+m_{10}m_5m_6m_7m_8+m_{10}m_5m_6m_8m_9+m_{10}m_6m_7m_8m_9\\
+&+m_2m_4m_6m_7m_8+m_4m_5m_6m_7m_8+m_4m_5m_6m_8m_9\\
+&+m_4m_5m_7m_8m_9+m_4m_6m_7m_8m_9.
+\end{align*}
+In particular all three are strictly positive on the positive orthant. To reconstruct~\eqref{eq:g} directly, let $s_j=1/m_j$. Substitution in the differentiated map~\eqref{eq:F} gives
+\[
+J_m=\begin{pmatrix}
+1+m_1(s_7+s_8)&0&m_3s_7&m_4s_8\\
+m_1s_9&1&m_3s_9&0\\
+m_1(s_5+s_7+s_9+s_{10})&-m_2s_5&1+m_3(s_5+s_7+s_9)&m_4s_{10}\\
+m_1(s_6+s_8+s_{10})&0&-m_3s_6&1+m_4(s_6+s_8+s_{10})
+\end{pmatrix}.
+\]
+Expanding $m_{10}m_5m_6m_7m_8m_9\det J_m$ gives precisely the four coefficients above and in~\eqref{eq:A13}.
+
+\section{Full rational witness}\label{app:witness}
+The rate vector, in reaction order, is
+\[
+\kappa=\left(
+\frac{564056688000}{20827163033},1,1,52,\frac{13}{30},\frac{13}{30},
+\frac{475132000}{401271957},1,1,\frac{56}{5},\frac{1435}{29},\frac{1435}{29}
+\right).
+\]
+The complete species vectors are given in Table~\ref{tab:witness}. Their common totals are~\eqref{eq:commontotals}. Substitution into the twelve reaction fluxes and the ten mass-action equations gives zero residuals exactly at both points. The full augmented determinants, as a separate check on the reduced calculation, are
+\begin{align*}
+\det D\psi_\kappa(\varphi_\kappa(P))
+&=-\frac{55262991073036297575834372455984}{284019536251510549041796875},\\
+\det D\psi_\kappa(\varphi_\kappa(Q))
+&=-\frac{54689394267653500504064463302664}{52596210416946397970703125}.
+\end{align*}
+\begin{center}
+\begin{minipage}{\textwidth}
+\centering
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{@{}ccc@{}}
+\toprule
+Species & $\varphi_\kappa(P)$ & $\varphi_\kappa(Q)$\\\midrule
+$h$ & $1/150$ & $6/25$\\
+$x_0$ & $5693/50000$ & $1/2000$\\
+$x_1$ & $3/10$ & $53/2000$\\
+$x_2$ & $1340$ & $19$\\
+$y_1$ & $3658381/108472440$ & $1103839640749/45196850000$\\
+$y_2$ & $2987246791/10605625$ & $3452453064/2121125$\\
+$u_1$ & $3/25$ & $477/1250$\\
+$u_2$ & $15544/15375$ & $13224/25625$\\
+$v_1$ & $13/250$ & $2067/12500$\\
+$v_2$ & $3752/75$ & $3192/125$\\\bottomrule
+\end{tabular}
+\par\smallskip\refstepcounter{table}\label{tab:witness}
+Table~\thetable: Two exact positive steady states at identical rates and totals.
+\end{minipage}
+\end{center}
+
+\section{A scalar reduction for exploring physical fibres}\label{app:scalar}
+The following reduction was used to locate the overlap and is not required for the topological proof. Fix the effective constants and $H,E,S>0$. Put $z=hx_1$, $r=c_2/b_2$, $D=S-rH$, and
+\[
+f(z)=\frac{a_1z}{E-c_1z}+(b_1+c_1-rb_1)z.
+\]
+For $0<z<E/c_1$, the conservation laws give
+\[
+rh^2+(D-f(z))h-z=0,
+\qquad h(z)=\frac{f(z)-D+\sqrt{(D-f(z))^2+4rz}}{2r}.
+\]
+Reconstruct
+\[
+x_0=E-c_1z,\qquad x_1=z/h(z),\qquad
+x_2=\frac{H-h(z)-b_1z}{b_2h(z)}.
+\]
+The positivity condition $H>h(z)+b_1z$ defines exactly one interval $(0,z_{\max})$. Indeed,
+\[
+(h+b_1z)'=
+\frac{1/h+a_1E/(E-c_1z)^2+b_1+c_1+b_1z/h^2}{z/h^2+r}>0.
+\]
+At the left endpoint $h+b_1z$ tends to $\max(0,H-S/r)<H$, while it tends to infinity as $z\uparrow E/c_1$. The positive steady states with a further fixed total $T$ therefore correspond bijectively to solutions in $(0,z_{\max})$ of
+\[
+\frac{H-h(z)-b_1z}{b_2h(z)}
+\left(1+\frac{a_2h(z)^2}{z}+(b_2+c_2)h(z)\right)=T.
+\]
+Every denominator is positive on this interval. This reduction searches actual physical fibres while preserving the distinction between multiple equilibria and stability.
+
+The separating factors have a direct interpretation in these coordinates.
+First,
+\[
+x_2-y_2=\frac{x_2(x_1-a_2h)}{x_1},
+\]
+so $m_6-m_4$ has the sign of $x_1-a_2h$. If $B$ denotes the second factor of $A_{13}$ in~\eqref{eq:A13}, then
+\[
+\frac{B}{m_{10}m_5m_7m_9}
+ =\frac{y_1v_1}{x_0}+v_1+u_1+y_1-\frac{v_2u_1}{u_2}
+ =z f'(z).
+\]
+Thus a negative determinant necessarily satisfies $(x_1-a_2h)f'(z)<0$.
+This is only a necessary sign condition: the positive terms in $g$ must
+also be overcome. The scalar reduction therefore guides a search for a
+physical fibre with negative-critical states of both sign types, while the
+exact determinant evaluations certify that the displayed witness succeeds.
+
+\begin{thebibliography}{9}
+\bibitem{CFMW}
+C. Conradi, E. Feliu, M. Mincheva and C. Wiuf,
+\emph{Identifying parameter regions for multistationarity},
+PLOS Computational Biology \textbf{13}(10) (2017), e1005751.
+\href{https://doi.org/10.1371/journal.pcbi.1005751}{doi:10.1371/journal.pcbi.1005751}.
+
+\bibitem{FW}
+E. Feliu and C. Wiuf,
+\emph{Enzyme-sharing as a cause of multi-stationarity in signalling systems},
+Journal of the Royal Society Interface \textbf{9} (2012), 1224--1232.
+\href{https://doi.org/10.1098/rsif.2011.0662}{doi:10.1098/rsif.2011.0662}.
+
+\bibitem{KW}
+N. Kaihnsa and K. Wang,
+\emph{Disconnectivity in Multistationarity Regions of Cascade of Goldbeter--Koshland Loops},
+arXiv:2607.25456v1, 28 July 2026.
+\url{https://arxiv.org/abs/2607.25456v1}.
+\href{https://doi.org/10.48550/arXiv.2607.25456}{doi:10.48550/arXiv.2607.25456}.
+
+\bibitem{TF}
+M. L. Telek and E. Feliu,
+\emph{Topological descriptors of the parameter region of multistationarity: Deciding upon connectivity},
+PLOS Computational Biology \textbf{19}(3) (2023), e1010970.
+\href{https://doi.org/10.1371/journal.pcbi.1010970}{doi:10.1371/journal.pcbi.1010970}.
+Preprint version used for theorem-number correspondence:
+\url{https://arxiv.org/abs/2209.13936v2}, 18 March 2023.
+\end{thebibliography}
+\end{document}

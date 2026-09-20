@@ -1,0 +1,1 @@
+Version 0.1.0-candidate: anonymous unrefereed preprint. Supplied minor review revisions actioned; exact replay hardened; five internal editorial roles accepted after documentary repair. No material scientific changes after frozen review. Final DOI metadata and final-byte gates recorded separately.

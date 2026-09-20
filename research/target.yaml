@@ -1,0 +1,37 @@
+target_id: two-layer-shared-phosphatase-connectivity
+search_date: 2026-09-20
+intended_contribution_unit: proof
+claim:
+  exact_statement: >-
+    For network (34) of Kaihnsa-Wang arXiv:2607.25456v1, the subset of
+    R_>0^12 times R_>0^4 admitting at least two distinct positive mass-action
+    equilibria is path connected, including parameters with degenerate equilibria.
+  exclusions:
+    - No claim of stability, fixed-rate slice connectivity, or historical priority.
+source:
+  originating_reference: Kaihnsa and Wang (2026), Conjecture 4.3
+  url: https://arxiv.org/abs/2607.25456v1
+normalisation:
+  indices: two layers, one shared phosphatase
+  scaling: no quotient required for proof
+  basis_order: H1 X0 X1 X2 Y1 Y2 U1 U2 V1 V2
+  symmetries: []
+sequences: []
+generating_functions: []
+matrices:
+  - name: reduced conservation Jacobian
+    description: Four-by-four rational matrix explicitly given in PROOF.md Appendix.
+aliases:
+  analysis: [path connectivity, critical determinant, incidence projection, overlapping images]
+  probability: [deterministic biochemical steady states; stochastic analogue not asserted]
+  combinatorics: [reaction stoichiometry, flux cone, bilinear critical polynomial]
+  mathematical_physics: [Goldbeter-Koshland cascade, enzyme sharing, phosphorylation loops]
+  statistics_optimisation_ml: [semialgebraic projection, parameter feasibility region]
+known_invariants:
+  stoichiometric_rank: 6
+  physical_dimension: 16
+  auxiliary_signs: sign(m6-m4), sign(A13)
+  overlap: exact rational certificate.json
+search_constraints:
+  primary_sources_only_for_technical_claims: true
+  databases_or_corpora: [web search, arXiv, PLOS, primary articles located by PubMed]

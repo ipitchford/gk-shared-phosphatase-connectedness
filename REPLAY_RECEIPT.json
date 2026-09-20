@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "scope": "Producer replay and semantic negative controls; not a formal topological proof.",
+  "checks": [
+    {
+      "checker": "check_certificate.py",
+      "optimized": false,
+      "passed": true
+    },
+    {
+      "checker": "check_certificate.py",
+      "optimized": true,
+      "passed": true
+    },
+    {
+      "checker": "review_independent_checker.py",
+      "optimized": false,
+      "passed": true
+    },
+    {
+      "checker": "review_independent_checker.py",
+      "optimized": true,
+      "passed": true
+    },
+    {
+      "semanticNegativeControl": "wrong total",
+      "rejectedBothModes": true
+    },
+    {
+      "semanticNegativeControl": "wrong effective constant",
+      "rejectedBothModes": true
+    },
+    {
+      "semanticNegativeControl": "wrong component claim",
+      "rejectedBothModes": true
+    }
+  ]
+}

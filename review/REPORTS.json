@@ -1,0 +1,37 @@
+{
+  "frozenArchiveSha256": "ad360a172bb4287faa493d898df98cdb6b4a31ddadc1b56bc95125e8f9110bcf",
+  "frozenPdfSha256": "f5264f711401f870d8a6aecbf312b4371b2c8c5e609470bbc92b73d8b40445dd",
+  "type": "Producer-coordinated internal model editorial review",
+  "reports": [
+    {
+      "role": "editor-in-chief",
+      "originalReportSha256": "c3508833bcf7f15848c661421a99bad472a8c0dd3e9567dcb4ab82844a650ba7",
+      "publicReportSha256": "c3508833bcf7f15848c661421a99bad472a8c0dd3e9567dcb4ab82844a650ba7",
+      "redaction": "Local workstation path replaced with LOCAL_PUBLICATION_WORKDIR; substantive text unchanged."
+    },
+    {
+      "role": "methodology-specialist",
+      "originalReportSha256": "fc9b2f35d824f1f0ccf6423a8a94cf86e94cf38dc559c4a16bc77f5eb6b685fe",
+      "publicReportSha256": "d672a805a42a2f03b36b6760fbe872a3f8c4267e807c73f377c57ba9e72cf195",
+      "redaction": "Local workstation path replaced with LOCAL_PUBLICATION_WORKDIR; substantive text unchanged. Local Python environment replaced with PYTHON_ENV."
+    },
+    {
+      "role": "domain-specialist",
+      "originalReportSha256": "c5a338fe80f9318128caef80b25fc233a0e39dea3c1969e282b1bd8fd7c2870e",
+      "publicReportSha256": "c5a338fe80f9318128caef80b25fc233a0e39dea3c1969e282b1bd8fd7c2870e",
+      "redaction": "Local workstation path replaced with LOCAL_PUBLICATION_WORKDIR; substantive text unchanged."
+    },
+    {
+      "role": "applications-specialist",
+      "originalReportSha256": "9fb8419f663349476cf4166bf1971e3984ad2c22b49f30b29ae11e9840c8a734",
+      "publicReportSha256": "9fb8419f663349476cf4166bf1971e3984ad2c22b49f30b29ae11e9840c8a734",
+      "redaction": "Local workstation path replaced with LOCAL_PUBLICATION_WORKDIR; substantive text unchanged."
+    },
+    {
+      "role": "devils-advocate",
+      "originalReportSha256": "43437b744af9f22a2178ff311ff25706292a164e45b061a7ecf3417fb74563ce",
+      "publicReportSha256": "43437b744af9f22a2178ff311ff25706292a164e45b061a7ecf3417fb74563ce",
+      "redaction": "Local workstation path replaced with LOCAL_PUBLICATION_WORKDIR; substantive text unchanged."
+    }
+  ]
+}
